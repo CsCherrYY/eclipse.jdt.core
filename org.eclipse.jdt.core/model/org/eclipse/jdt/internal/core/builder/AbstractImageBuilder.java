@@ -867,7 +867,9 @@ protected char[] writeClassFile(ClassFile classFile, SourceFile compilationUnit,
 	}
 
 	IFile file = container.getFile(filePath.addFileExtension(SuffixConstants.EXTENSION_class));
-	writeClassFileContents(classFile, file, fileName, isTopLevelType, compilationUnit);
+	if (this.compiler.options.writeClassFiles) {
+		writeClassFileContents(classFile, file, fileName, isTopLevelType, compilationUnit);
+	}
 	// answer the name of the class file as in Y or Y$M
 	return filePath.lastSegment().toCharArray();
 }
